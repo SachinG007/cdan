@@ -142,7 +142,7 @@ def train(config):
         random_layer.cuda()
     ad_net = ad_net.cuda()
 
-    map_relu = nn.ReLU(inplace=True)
+    map_relu = nn.ReLU()
     map_fc = nn.Linear(base_network.output_num(), base_network.output_num())
     map_relu = map_relu.cuda()
     map_fc = map_fc.cuda()
