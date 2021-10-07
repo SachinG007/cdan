@@ -47,7 +47,7 @@ def image_classification_test(loader, model, map_fc, map_relu, domain, test_10cr
             if domain==1:
                 feat, _ = model(inputs)
                 feat = map_fc(map_relu(feat))
-                outputs = models.fc(feat)
+                outputs = model.fc(feat)
 
             if start_test:
                 all_output = outputs.float().cpu()
