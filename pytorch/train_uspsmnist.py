@@ -71,8 +71,8 @@ def test(args, model, test_loader):
 
 def main():
     # Training settings
-    parser = argparse.ArgumentParser(description='CDAN USPS MNIST')
-    parser.add_argument('method', type=str, default='CDAN-E', choices=['CDAN', 'CDAN-E', 'DANN'])
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--method', type=str, default='CDAN-E', choices=['CDAN', 'CDAN-E', 'DANN'])
     parser.add_argument('--task', default='USPS2MNIST', help='task to perform')
     parser.add_argument('--batch_size', type=int, default=64,
                         help='input batch size for training (default: 64)')
@@ -84,7 +84,7 @@ def main():
                         help='learning rate (default: 0.01)')
     parser.add_argument('--momentum', type=float, default=0.5, metavar='M',
                         help='SGD momentum (default: 0.5)')
-    parser.add_argument('--gpu_id', type=str,
+    parser.add_argument('--gpu_id', type=str,default="0",
                         help='cuda device id')
     parser.add_argument('--seed', type=int, default=1, metavar='S',
                         help='random seed (default: 1)')

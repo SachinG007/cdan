@@ -21,6 +21,7 @@ def grl_hook(coeff):
 def CDAN(input_list, ad_net, entropy=None, coeff=None, random_layer=None):
     softmax_output = input_list[1].detach()
     feature = input_list[0]
+    import pdb;pdb.set_trace()
     if random_layer is None:
         op_out = torch.bmm(softmax_output.unsqueeze(2), feature.unsqueeze(1))
         ad_out = ad_net(op_out.view(-1, softmax_output.size(1) * feature.size(1)))
@@ -40,7 +41,11 @@ def CDAN(input_list, ad_net, entropy=None, coeff=None, random_layer=None):
         target_weight = entropy*target_mask
         weight = source_weight / torch.sum(source_weight).detach().item() + \
                  target_weight / torch.sum(target_weight).detach().item()
-        return torch.sum(weight.view(-1, 1) * nn.BCELoss(reduction='none')(ad_out, dc_target)) / torch.sum(weight).detach().item()
+        
+        try:
+            return torch.sum(weight.view(-1, 1) * nn.BCELoss(reduction='none')(ad_out, dc_target)) / torch.sum(weight).detach().item()
+        except:
+            import pdb;pdb.set_trace()
     else:
         return nn.BCELoss()(ad_out, dc_target) 
 

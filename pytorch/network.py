@@ -222,6 +222,7 @@ class ResNetFc(nn.Module):
     if self.use_bottleneck and self.new_cls:
         x = self.bottleneck(x)
     y = self.fc(x)
+    import pdb;pdb.set_trace()
     return x, y
 
   def output_num(self):
@@ -398,5 +399,5 @@ class AdversarialNetwork(nn.Module):
 
   def output_num(self):
     return 1
-  def get_parameters(self):
-    return [{"params":self.parameters(), "lr_mult":10, 'decay_mult':2}]
+#   def get_parameters(self):
+#     return [{"params":self.parameters(), "lr_mult":10, 'decay_mult':2}]
