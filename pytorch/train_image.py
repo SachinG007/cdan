@@ -144,6 +144,8 @@ def train(config):
 
     map_relu = nn.ReLU(inplace=True)
     map_fc = nn.Linear(base_network.output_num(), base_network.output_num())
+    map_relu = map_relu.cuda()
+    map_fc = map_fc.cuda()
 
     parameter_list = list(base_network.parameters()) + list(ad_net.parameters()) + list(map_fc.parameters())
  
