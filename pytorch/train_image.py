@@ -145,7 +145,7 @@ def train(config):
     map_relu = nn.ReLU(inplace=True)
     map_fc = nn.Linear(base_network.output_num(), base_network.output_num())
 
-    parameter_list = list(base_network.parameters()) + list(ad_net.parameters() + list(map_fc.parameters()))
+    parameter_list = list(base_network.parameters()) + list(ad_net.parameters()) + list(map_fc.parameters())
  
     ## set optimizer
     optimizer = optim.SGD(parameter_list, lr=args.lr, momentum=0.9, weight_decay=5e-4)
